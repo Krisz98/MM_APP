@@ -7,10 +7,10 @@
     tools:context="com.example.krani.myapplication.MainActivity">
 
    <com.example.krani.myapplication.GraphVIew
-       android:layout_height="500dp"
+       android:layout_height="match_parent"
        android:layout_width="match_parent"
-       android:padding="30dp"
-       android:paddingBottom="0dp"
+       android:padding="24dp"
+
 
        />
 
