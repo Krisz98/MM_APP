@@ -51,7 +51,7 @@ public class GraphVIew extends View {
         super.onDraw(canvas);
         int tagolok_y =4; //egy x oldalon levő tagolók száma (y-nal ||-os)
         int tagolok_x = 4; //egy y oldalon levő tagoloók száma (x-szel ||-os)
-        boolean full = true; //true: összes siknegyed; false: 1. és 4. siknegyedek
+        boolean full = false; //true: összes siknegyed; false: 1. és 4. siknegyedek
         float y=0;
         float x=0;
         float origoY = getPaddingTop()+getY()+(getHeight()-getPaddingTop()-getPaddingBottom())/2;
@@ -95,7 +95,7 @@ public class GraphVIew extends View {
             for(int p=0;p<=tagolok_y;++p){
                 if(p==tagolok_y/2) ++p;
                 mPainter.setColor(getResources().getColor(R.color.tagoloY));
-                mPainter.setStrokeWidth(3);
+                mPainter.setStrokeWidth(2);
                 canvas.drawLine(startX+p*tagolox,startY,startX+p*tagolox,endY,mPainter);
             }
         }
@@ -117,7 +117,7 @@ public class GraphVIew extends View {
             float tagolox = (endX-startX)/tagolok_y;
             for(int p=1;p<=tagolok_y;++p){
                 mPainter.setColor(getResources().getColor(R.color.tagoloY));
-                mPainter.setStrokeWidth(3);
+                mPainter.setStrokeWidth(2);
                 canvas.drawLine(startX+p*tagolox,startY,startX+p*tagolox,endY,mPainter);
             }
         }
