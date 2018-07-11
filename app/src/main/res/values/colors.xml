@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="axisY">#009FAF</color>
+    <color name="underAxisY">#009EAE</color>
+    <color name="tagoloY">#4DD0E1</color>
+</resources>
