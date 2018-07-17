@@ -17,6 +17,13 @@ public class PlusVIew extends View {
     private Paint mPainter;
     private VectorDrawable mVectPlus;
     private boolean mExpanded =false;
+
+    public PlusVIew(Context context) {
+        super(context);
+        mPainter = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mVectPlus = (VectorDrawable) getResources().getDrawable(R.drawable.plus);
+    }
+
     public PlusVIew(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPainter = new Paint(Paint.ANTI_ALIAS_FLAG);

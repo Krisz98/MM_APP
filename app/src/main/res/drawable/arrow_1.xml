@@ -3,7 +3,8 @@
     android:width="45dp"
     android:height="155dp"
     android:viewportWidth="45"
-    android:viewportHeight="155">
+    android:viewportHeight="155"
+    >
 
     <group
         android:translateX="-147.924"

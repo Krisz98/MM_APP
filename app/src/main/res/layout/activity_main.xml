@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.krani.myapplication.MainActivity"
+    android:id="@+id/Rlay"
     >
 
-
-   <com.example.krani.myapplication.PlusVIew
-       android:id="@+id/plus_btn"
-       android:layout_height="50dp"
-       android:layout_width="50dp"
-       android:layout_centerVertical="true"
-       android:layout_alignParentLeft="true"
-       android:elevation="12dp"/>
+   <com.example.krani.myapplication.GraphVIew
+       android:id="@+id/nyiroigenybeveteliabra"
+       android:layout_width="match_parent"
+       android:layout_height="400dp"
+       android:padding="20dp"
+       />
 
 
 </RelativeLayout>
