@@ -29,7 +29,7 @@ public class GraphVIew extends View {
     private float terj; // ha nem fixálok: -1; különben lefixálhatom hogy mekkora legyen az y tengely max beosztása
     private float s;// hány beosztás van az x tengelyen(1 oldalon)
     private float z; // hány beosztás van az y tengelyen(1 oldalon) ezt nem piszkálni
-    boolean full; //true: összes siknegyed; false: 1. és 4. siknegyedek
+    private boolean full; //true: összes siknegyed; false: 1. és 4. siknegyedek
     static {
         LOGTAG = "GraphView";
     }
@@ -206,7 +206,7 @@ public class GraphVIew extends View {
             ++k;
         }while(k!=endX);
         Log.v(LOGTAG,"s: "+Float.toString(s)+" z: "+Float.toString(z));
-        invalidate();
+        //invalidate();
     }
 
     public void setGraphFunctionProvider(GraphFunctionProvider graphFunctionProvider) {

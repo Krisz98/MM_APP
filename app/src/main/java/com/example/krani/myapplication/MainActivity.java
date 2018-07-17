@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity{
         IgenybevetelSzamito igenybevetelSzamito = new IgenybevetelSzamito(koordinataRendszer);
         igenybevetelSzamito.setMode(IgenybevetelSzamito.NYIROERO);
         graphVIew.setGraphFunctionProvider(igenybevetelSzamito);
-        graphVIew.setXmax(5);
+        graphVIew.setXmax(10);
+        graphVIew.setTagolok_y(5);
         graphVIew.setMode(GraphVIew.HALF);
         graphVIew.invalidate();
     }
