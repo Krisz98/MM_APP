@@ -1,10 +1,17 @@
 package com.example.krani.myapplication.Sziltan;
 
-import com.example.krani.myapplication.Sziltan.Vektor;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.drawable.VectorDrawable;
 
 public abstract class Hatas {
-    private Vektor helyVektor;
-    public Hatas(Vektor helyVektor){
+    protected Context context;
+    protected VectorDrawable vectorDrawable;
+    protected double drawableratio; // width/height
+    protected Path path;
+    protected Vektor helyVektor;
+    protected Hatas(Vektor helyVektor){
         this.helyVektor = helyVektor;
     }
     public Vektor getHelyVektor() {
@@ -14,4 +21,20 @@ public abstract class Hatas {
     public void setHelyVektor(Vektor helyVektor) {
         this.helyVektor = helyVektor;
     }
+
+    public void setPath(Path path) {
+        this.path = path;
+    }
+
+    public Path getPath() {
+        return path;
+    }
+    protected abstract float getAngle();
+
+    public void setContext(Context context) {
+        this.context = context;
+        setVectorDrawable();
+    }
+    protected abstract void setVectorDrawable();
+    public abstract void draw(float lambda, float origoX, float origoY, float visibleDiameterInPixels, float maxSize, Canvas canvas, int strokewidth);
 }

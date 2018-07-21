@@ -19,7 +19,7 @@ public class IgenybevetelSzamito implements GraphFunctionProvider {
         this.koordinataRendszer = koordinataRendszer;
     }
     @Override
-    public float func(float x, Paint painter, Context context) {
+    public double func(double x, Paint painter, Context context) {
         float p=0;
         for(Hatas h: koordinataRendszer.getHatasokLeftToX(x)){
             switch (mode){

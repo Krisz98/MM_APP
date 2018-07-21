@@ -4,6 +4,6 @@ import android.content.Context;
 import android.graphics.Paint;
 
 public interface GraphFunctionProvider {
-    public float func(float x, Paint painter, Context context);
+    public double func(double x, Paint painter, Context context);
 
 }

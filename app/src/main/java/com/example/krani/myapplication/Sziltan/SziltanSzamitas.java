@@ -1,7 +1,7 @@
 package com.example.krani.myapplication.Sziltan;
 
 public class SziltanSzamitas {
-    public static float vectorDotProduct(Vektor a, Vektor b){
+    public static double vectorDotProduct(Vektor a, Vektor b){
         return a.getX()*b.getX()+a.getY()*b.getY()+a.getZ()*b.getZ();
     }
     public static Vektor vectorCrossProduct(Vektor a, Vektor b){

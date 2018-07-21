@@ -27,9 +27,11 @@ public class GraphVIew extends View {
     private int tagolok_y;//egy x oldalon levő tagolók száma (y-nal ||-os)
     private int tagolok_x;//egy y oldalon levő tagoloók száma (x-szel ||-os)
     private float terj; // ha nem fixálok: -1; különben lefixálhatom hogy mekkora legyen az y tengely max beosztása
-    private float s;// hány beosztás van az x tengelyen(1 oldalon)
-    private float z; // hány beosztás van az y tengelyen(1 oldalon) ezt nem piszkálni
+    private double s;// hány beosztás van az x tengelyen(1 oldalon)
+    private double z; // hány beosztás van az y tengelyen(1 oldalon) ezt nem piszkálni
     private boolean full; //true: összes siknegyed; false: 1. és 4. siknegyedek
+    private Paint textPaint;
+    private String label;
     static {
         LOGTAG = "GraphView";
     }
@@ -54,7 +56,12 @@ public class GraphVIew extends View {
         init(context, attrs);
     }
     private void init(Context context, AttributeSet attrs) {
+        label = "";
         mPainter = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint = new Paint();
+        textPaint.setTextSize(12*getResources().getDisplayMetrics().density);
+        textPaint.setColor(getResources().getColor(R.color.axisY));
+        textPaint.setTextAlign(Paint.Align.RIGHT);
         mContext=context;
         tagolok_y =4; //egy x oldalon levő tagolók száma (y-nal ||-os)
         tagolok_x=6;//egy y oldalon levő tagoloók száma (x-szel ||-os)
@@ -64,14 +71,19 @@ public class GraphVIew extends View {
         s = 3;
         this.graphFunctionProvider = new GraphFunctionProvider() {
             @Override
-            public float func(float x, Paint painter, Context context) {
-                return (float) Math.sin(x);
+            public double func(double x, Paint painter, Context context) {
+                return  Math.sin(x);
             }
         };
     }
     private void init(Context context){
+        label = "";
         mPainter = new Paint(Paint.ANTI_ALIAS_FLAG);
         mContext=context;
+        textPaint = new Paint();
+        textPaint.setTextSize(12*getResources().getDisplayMetrics().density);
+        textPaint.setColor(getResources().getColor(R.color.axisY));
+        textPaint.setTextAlign(Paint.Align.RIGHT);
         tagolok_y =4;//egy x oldalon levő tagolók száma (y-nal ||-os)
         tagolok_x=6;//egy y oldalon levő tagoloók száma (x-szel ||-os)
         terj = -1;
@@ -80,8 +92,8 @@ public class GraphVIew extends View {
         s = 3;
         this.graphFunctionProvider = new GraphFunctionProvider() {
             @Override
-            public float func(float x, Paint painter, Context context) {
-                return (float) Math.sin(x);
+            public double func(double x, Paint painter, Context context) {
+                return Math.sin(x);
             }
         };
     }
@@ -100,8 +112,8 @@ public class GraphVIew extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float y=0;
-        float x=0;
+        double y=0;
+        double x=0;
         float origoY = getPaddingTop()+(getHeight()-getPaddingTop()-getPaddingBottom())/2;
         float startX = getPaddingLeft();
         float startY = getPaddingTop();
@@ -110,15 +122,16 @@ public class GraphVIew extends View {
         float origoX = getPaddingLeft()+(getWidth()-getPaddingLeft()-getPaddingRight())/2;
            //hány beosztás van az y tengelyen
         float i; // hányadik pixel az origóhoz képest, lehet negativ is
-        float px=-1;
-        float py=-1;
+        double px=-1;
+        double py=-1;
         float w = getWidth();
         float ww = endX-startX;
+        canvas.drawText("Mh",startX-10,startY+getResources().getDisplayMetrics().density*16,textPaint);
         mPainter.setColor(getResources().getColor(R.color.axisY));
         mPainter.setStrokeWidth(10);
         float k =0; //x koordináta a viewban, ahol járunk
-        float a;
-        float max=0; //a maxiumhely kereséséhez
+        double a;
+        double max=0; //a maxiumhely kereséséhez
         //terj = z;
         //tagolok_y = (int)s;
         if(full){
@@ -176,7 +189,7 @@ public class GraphVIew extends View {
             if(q==tagolok_x) q++;
             canvas.drawLine(startX,endY-q*tagoloy,endX,endY-q*tagoloy,mPainter);
         }
-        float b = z/(endY-startY);   //egy pixel hány beosztásnak felel meg az y tengelyen
+        double b = z/(endY-startY);   //egy pixel hány beosztásnak felel meg az y tengelyen
         mPainter.setColor(getResources().getColor(R.color.axisY));
         mPainter.setStrokeWidth(10);
         canvas.drawLine(origoX,startY,origoX,endY,mPainter);
@@ -191,13 +204,13 @@ public class GraphVIew extends View {
                     py=y;
                 }
 
-                canvas.drawLine(px,origoY-py,k,origoY-y,mPainter);
-                canvas.drawCircle(k,origoY-y,5,mPainter);
+                canvas.drawLine((float) px, (float) (origoY-py),k, (float) (origoY-y),mPainter);
+                canvas.drawCircle(k, (float) (origoY-y),5,mPainter);
                 px = k;
                 py=y;
                 mPainter.setColor(getResources().getColor(R.color.underAxisY));
                 mPainter.setAlpha(10);
-                canvas.drawLine(k,origoY,k,origoY-y,mPainter);
+                canvas.drawLine(k,origoY,k, (float) (origoY-y),mPainter);
                 mPainter.setColor(getResources().getColor(R.color.axisY));
                 mPainter.setAlpha(255);
 
@@ -205,7 +218,10 @@ public class GraphVIew extends View {
 
             ++k;
         }while(k!=endX);
-        Log.v(LOGTAG,"s: "+Float.toString(s)+" z: "+Float.toString(z));
+        textPaint.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText(Double.toString(s),endX,origoY-3,textPaint);
+        canvas.drawText(Double.toString(graphFunctionProvider.func(x,mPainter,mContext)),endX, (float) (origoY-py),textPaint);
+        Log.v(LOGTAG,"s: "+Double.toString(s)+" z: "+Double.toString(z));
         //invalidate();
     }
 
@@ -219,13 +235,13 @@ public class GraphVIew extends View {
     public void setXmax(float x){
         this.s = x;
     }
-    public float getXmax(){
+    public double getXmax(){
         return this.s;
     }
     public void setYmax(float yMax){
         this.terj = yMax;
     }
-    public float getYmax(){
+    public double getYmax(){
         return this.z;
     }
     public void setTagolok_x(int n){
@@ -249,5 +265,12 @@ public class GraphVIew extends View {
         return full;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 }
 

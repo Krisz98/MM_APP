@@ -48,7 +48,6 @@ public class CircularLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         final int count = getChildCount();
         int k =0;
-        //TODO: child.getVisibility-t figyelni!!!!
 
         for(int i=0;i<count;++i){
             final View child = getChildAt(i);
