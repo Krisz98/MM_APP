@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
         graphVIew.setXmax(5);
         graphVIew.setTagolok_y(5);
         graphVIew.setGraphFunctionProvider(igenybevetelSzamito);
-        graphVIew.setLabel("V");
+        //graphVIew.setLabel("V");
         koordinataRendszer.addHatas(new Ero(new Vektor(1,0,0),new Vektor(3,3,0)));
         koordinataRendszer.addHatas(new Ero(new Vektor(1.5,0,0),new Vektor(2,1,0)));
         koordinataRendszer.addHatas(new Ero(new Vektor(5,0,0),new Vektor(-1,-1,0)));

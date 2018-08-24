@@ -63,4 +63,13 @@ public class IgenybevetelSzamito implements GraphFunctionProvider {
     public int getMode() {
         return mode;
     }
+    public String getModeString(){
+        switch (mode){
+            case NORMALERO: return "N";
+            case NYIROERO: return "V";
+            case HAJLITONYOMATEK: return "Mh";
+            case CSAVARONYOMATEK: return "Mt";
+        }
+        return "";
+    }
 }

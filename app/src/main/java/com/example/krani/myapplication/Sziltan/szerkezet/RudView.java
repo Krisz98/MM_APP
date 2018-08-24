@@ -26,6 +26,7 @@ public class RudView extends View {
     private Rud rud;
     private Paint paint;
     private  int tagoloY;
+    private float strokeWidth;
     public RudView(Context context) {
         super(context);
         init(context);
@@ -64,7 +65,7 @@ public class RudView extends View {
         int wy = (int) ((endY-startY)*0.4);
         int px = (endX-startX-wx)/2;
         int py =(endY-startY-wy)/2;
-        rud.getPaint().setStrokeWidth((float) (wx*0.008));
+        rud.getPaint().setStrokeWidth((float) (wx*0.016));
         rud.setBounds(new RectF(startX,startY+py,endX,endY-py));
     }
 
@@ -72,13 +73,15 @@ public class RudView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         rud.setCanvas(canvas);
-        rud.draw();
         drawTagolok(canvas);
+        rud.draw();
+
         //canvas.drawRect(startX,startY,endX,endY,paint);
         //canvas.drawRect(0,0,getWidth(),getHeight(),paint);
     }
     private void drawTagolok(Canvas canvas){
-        paint.setStrokeWidth(10);
+        strokeWidth = getWidth()*((float)1/100);
+        paint.setStrokeWidth(strokeWidth);
         paint.setColor(getResources().getColor(R.color.axisY));
         canvas.drawLine(startX,startY,startX,endY,paint);
         paint.setColor(getResources().getColor(R.color.tagoloY));
