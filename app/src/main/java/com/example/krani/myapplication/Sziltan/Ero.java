@@ -44,7 +44,7 @@ public class Ero extends Hatas {
         int w = (int) (maxSize*drawableratio);
         int h = (int) maxSize;
         int x = (int) (origoX+helyVektor.getX()/lambda);
-        int y = (int) (origoY+Math.signum(eroVektor.getY())*visibleDiameterInPixels/2);
+        int y = (int) (origoY);
         if(eroVektor.getY()>0){
             vectorDrawable.setBounds(x-w/2,  (y+strokewidth/2-h),x+w/2,y+strokewidth/2);
             canvas.rotate(180+getAngle(),x,y+strokewidth/2);

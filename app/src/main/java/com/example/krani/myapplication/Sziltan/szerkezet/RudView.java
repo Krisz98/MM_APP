@@ -65,7 +65,7 @@ public class RudView extends View {
         int wy = (int) ((endY-startY)*0.4);
         int px = (endX-startX-wx)/2;
         int py =(endY-startY-wy)/2;
-        rud.getPaint().setStrokeWidth((float) (wx*0.016));
+        rud.getPaint().setStrokeWidth((float) (wx*0.011));
         rud.setBounds(new RectF(startX,startY+py,endX,endY-py));
     }
 
@@ -83,12 +83,12 @@ public class RudView extends View {
         strokeWidth = getWidth()*((float)1/100);
         paint.setStrokeWidth(strokeWidth);
         paint.setColor(getResources().getColor(R.color.axisY));
-        canvas.drawLine(startX,startY,startX,endY,paint);
+        //canvas.drawLine(startX,startY,startX,endY,paint);
         paint.setColor(getResources().getColor(R.color.tagoloY));
         paint.setStrokeWidth(2);
         float dx = (endX-startX)/tagoloY;
-        for(int i=1;i<=tagoloY;++i){
-            canvas.drawLine(startX+dx*i,startY,startX+dx*i,endY,paint);
+        for(int i=0;i<=tagoloY;++i){
+            canvas.drawLine(startX+dx*i,startY,startX+dx*i,(endY+startY)/2,paint);
         }
     }
 

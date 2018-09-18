@@ -10,12 +10,12 @@
         android:translateX="-147.924"
         android:translateY="-101.502">
         <path
-            android:strokeColor="#4CAF50"
+            android:strokeColor="#D50000"
             android:strokeWidth="6"
             android:strokeMiterLimit="10"
             android:pathData="M 170.94 209.36 L 170.94 102" />
         <path
-            android:fillColor="#4CAF50"
+            android:fillColor="#D50000"
             android:pathData="M 148.76 200.36 L 192.24 200.36 L 171.39 255.67 Z" />
     </group>
 </vector>

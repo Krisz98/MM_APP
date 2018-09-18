@@ -1,5 +1,6 @@
 package com.example.krani.myapplication;
 
+import android.content.Intent;
 import android.graphics.Outline;
 import android.graphics.drawable.VectorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,9 @@ import android.widget.RelativeLayout;
 import com.example.krani.myapplication.Sziltan.Ero;
 import com.example.krani.myapplication.Sziltan.IgenybevetelSzamito;
 import com.example.krani.myapplication.Sziltan.KoncentraltEropar;
+import com.example.krani.myapplication.Sziltan.KonstansMegoszlo;
 import com.example.krani.myapplication.Sziltan.KoordinataRendszer;
+import com.example.krani.myapplication.Sziltan.SziltanSzamitas;
 import com.example.krani.myapplication.Sziltan.Vektor;
 import com.example.krani.myapplication.Sziltan.szerkezet.RudView;
 
@@ -28,59 +31,39 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        graphVIew = (GraphVIew) findViewById(R.id.graph);
-        rudView = (RudView) findViewById(R.id.rudabra);
+        GraphVIew b = (GraphVIew) findViewById(R.id.a);
+        GraphVIew c = (GraphVIew) findViewById(R.id.c);
+        RudView r = (RudView) findViewById(R.id.b);
+        KoordinataRendszer koordinataRendszer =new KoordinataRendszer();
         IgenybevetelSzamito igenybevetelSzamito = new IgenybevetelSzamito();
-        igenybevetelSzamito.setMode(IgenybevetelSzamito.NORMALERO);
-        KoordinataRendszer koordinataRendszer = new KoordinataRendszer();
+        IgenybevetelSzamito igenybevetelSzamitoC = new IgenybevetelSzamito();
         igenybevetelSzamito.setKoordinataRendszer(koordinataRendszer);
-        rudView.getRud().setKoordinataRendszer(koordinataRendszer);
-        rudView.getRud().setLength(5);
-        rudView.setTagoloY(5);
-        graphVIew.setXmax(5);
-        graphVIew.setTagolok_y(5);
-        graphVIew.setGraphFunctionProvider(igenybevetelSzamito);
-        //graphVIew.setLabel("V");
-        koordinataRendszer.addHatas(new Ero(new Vektor(1,0,0),new Vektor(3,3,0)));
-        koordinataRendszer.addHatas(new Ero(new Vektor(1.5,0,0),new Vektor(2,1,0)));
+        igenybevetelSzamitoC.setKoordinataRendszer(koordinataRendszer);
+        b.setGraphFunctionProvider(igenybevetelSzamito);
+        c.setGraphFunctionProvider(igenybevetelSzamitoC);
+        c.setTagolok_y(5);
+        b.setTagolok_y(5);
+        c.setXmax(5);
+        r.setTagoloY(5);
+        b.setXmax(5);
+        igenybevetelSzamito.setMode(IgenybevetelSzamito.NYIROERO);
+        igenybevetelSzamitoC.setMode(IgenybevetelSzamito.HAJLITONYOMATEK);
+        r.getRud().setKoordinataRendszer(koordinataRendszer);
+        r.getRud().setLength(5);
+        koordinataRendszer.addHatas(new Ero(new Vektor(0,0,0),new Vektor(0,1,0)));
+        koordinataRendszer.addHatas(new Ero(new Vektor(2,0,0),new Vektor(0,1,0)));
         koordinataRendszer.addHatas(new Ero(new Vektor(5,0,0),new Vektor(-1,-1,0)));
-        koordinataRendszer.addHatas(new Ero(new Vektor(5,0,0),new Vektor(0,1,0)));
-        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(0,0,0),new Vektor(0,2,3)));
-        rudView.invalidate();
-        graphVIew.invalidate();
+        //koordinataRendszer.addHatas(new Ero(new Vektor(2,0,0),new Vektor(-3,0,0)));
+        koordinataRendszer.addHatas(new KonstansMegoszlo(new Vektor(0,0,0),new Vektor(2,0,0),0.5));
+        koordinataRendszer.addHatas(new KonstansMegoszlo(new Vektor(0,0,0),new Vektor(2.5,0,0),-0.1));
+        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(0,0,0),new Vektor(0,0,5)));
+        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(3,0,0),new Vektor(0,0,1)));
+        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(5,0,0),new Vektor(0,0,5.9)));
+        r.invalidate();
+        b.invalidate();
+        c.invalidate();
+
     }
-    class PlusViewGestureDetector implements GestureDetector.OnGestureListener{
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            Log.v(LOGTAG,"Touched");
-            return true;
-        }
 
 
-        @Override
-        public void onShowPress(MotionEvent e) {
-
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            return false;
-        }
-    }
 }

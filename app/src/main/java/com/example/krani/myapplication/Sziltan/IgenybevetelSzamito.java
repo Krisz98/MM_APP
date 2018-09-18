@@ -2,6 +2,7 @@ package com.example.krani.myapplication.Sziltan;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.example.krani.myapplication.GraphFunctionProvider;
 
@@ -25,21 +26,36 @@ public class IgenybevetelSzamito implements GraphFunctionProvider {
             switch (mode){
                 case NORMALERO:
                     if(h instanceof Ero){
+                        if(h instanceof Megoszloero) break;
                         p+= ((Ero) h).getEroVektor().getX();
                     }
                     break;
                 case NYIROERO:
-                    if(h instanceof Ero) p+= ((Ero) h).getEroVektor().getY();
+                    if(h instanceof Ero){
+                        if(h instanceof Megoszloero){
+                            p+= ((Megoszloero) h).getErovektor(x).getY();
+                        }
+                        else{
+                            p+= ((Ero) h).getEroVektor().getY();
+                        }
+                    }
                     break;
                 case HAJLITONYOMATEK:
                     if(h instanceof KoncentraltEropar) p+= ((KoncentraltEropar) h).getNyomatekVektor().getZ();
                     if (h instanceof Ero) {
-                        p+= SziltanSzamitas.vectorCrossProduct(SziltanSzamitas.vectorSubstraction(h.getHelyVektor(),new Vektor(x,0,0)),((Ero) h).getEroVektor()).getZ();
+                        if(h instanceof Megoszloero){
+                            p+= SziltanSzamitas.vectorCrossProduct(SziltanSzamitas.vectorSubstraction(((Megoszloero) h).getCenterVektor(x),new Vektor(x,0,0)),((Megoszloero) h).getErovektor(x)).getZ();
+                        }
+                        else {
+                            p += SziltanSzamitas.vectorCrossProduct(SziltanSzamitas.vectorSubstraction( h.getHelyVektor(),new Vektor(x, 0, 0)), ((Ero) h).getEroVektor()).getZ();
+                        }
+
                     }
                     break;
                 case CSAVARONYOMATEK:
                     if(h instanceof KoncentraltEropar) p+= ((KoncentraltEropar) h).getNyomatekVektor().getX();
                     if(h instanceof Ero){
+                        if(h instanceof Megoszloero)break;
                         p+= SziltanSzamitas.vectorCrossProduct(SziltanSzamitas.vectorSubstraction(h.getHelyVektor(),new Vektor(x,0,0)),((Ero) h).getEroVektor()).getX();
 
                     }

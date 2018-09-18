@@ -63,15 +63,18 @@ public class Rud {
         return this.rectF;
     }
     public void draw(){
-       canvas.drawRoundRect(rectF,rx,ry,paint);
+        paint.setStrokeWidth(rectF.width()/200);
+       canvas.drawLine(rectF.left,rectF.centerY(),rectF.right,rectF.centerY(),paint);
+       canvas.drawLine(rectF.left,rectF.centerY()-(rectF.centerY()-rectF.top)/3f,rectF.left,rectF.centerY()+(rectF.centerY()-rectF.top)/3f,paint);
+       canvas.drawLine(rectF.right,rectF.centerY()-(rectF.centerY()-rectF.top)/3f,rectF.right,rectF.centerY()+(rectF.centerY()-rectF.top)/3f,paint);
        for(Hatas hatas: koordinataRendszer.getHatasok()){
             hatas.setContext(context);
             if(hatas instanceof KoncentraltEropar){
-                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(),rectF.height()*2,canvas, (int) paint.getStrokeWidth());
+                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(),rectF.height()*2.5f,canvas, (int) paint.getStrokeWidth());
             }
             else {
                 int max = (int) Math.min(canvas.getHeight()-rectF.height(),canvas.getWidth()-rectF.width());
-                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(), (float) (0.9*max/2),canvas, (int) paint.getStrokeWidth());
+                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(), (float) (max/2),canvas, (int) paint.getStrokeWidth());
             }
 
        }

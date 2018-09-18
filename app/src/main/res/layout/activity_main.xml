@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="match_parent"
     tools:context="com.example.krani.myapplication.MainActivity"
     android:id="@+id/Rlay"
     android:orientation="vertical"
@@ -11,20 +11,30 @@
    <com.example.krani.myapplication.GraphVIew
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:paddingRight="60dp"
-       android:paddingLeft="60dp"
+       android:layout_weight="2"
+       android:id="@+id/a"
+       android:layout_marginTop="30dp"
        android:paddingTop="30dp"
-       android:layout_weight="3"
-       android:layout_marginTop="20dp"
-       android:id="@+id/graph"/>
-   <com.example.krani.myapplication.Sziltan.szerkezet.RudView
+       android:paddingLeft="60dp"
+       android:paddingRight="60dp" />
+   <com.example.krani.myapplication.GraphVIew
        android:layout_width="match_parent"
        android:layout_height="0dp"
+       android:layout_weight="2"
+       android:id="@+id/c"
+       android:layout_marginTop="10dp"
+       android:paddingTop="30dp"
+       android:paddingLeft="60dp"
+       android:paddingRight="60dp"/>
+   <com.example.krani.myapplication.Sziltan.szerkezet.RudView
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:layout_weight="1"
+       android:id="@+id/b"
+
+       android:layout_marginBottom="30dp"
        android:paddingLeft="60dp"
        android:paddingRight="60dp"
-       android:layout_weight="1"
-       android:layout_marginBottom="20dp"
-       android:id="@+id/rudabra"
        />
 
 

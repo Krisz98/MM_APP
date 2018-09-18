@@ -111,12 +111,13 @@ public class GraphVIew extends View {
         setMeasuredDimension(w, h);
         Log.v(LOGTAG, "Pixel density: " + getResources().getDisplayMetrics().densityDpi + "PaddingLeft: " + Float.toString(getX()));
         Log.v(LOGTAG, "DensityDefault: " + DisplayMetrics.DENSITY_DEFAULT);
-
+        textPaint.setTextSize(Math.min(getPaddingLeft(),getPaddingRight())*0.3f*getResources().getDisplayMetrics().density);
     }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        axisStrokeWidth = getWidth()*((float)1/100);
+        axisStrokeWidth = getWidth()*((float)1/200);
+
         double y=0;
         double x=0;
         float origoY = getPaddingTop()+(getHeight()-getPaddingTop()-getPaddingBottom())/2;
@@ -131,7 +132,7 @@ public class GraphVIew extends View {
         double py=-1;
         float w = getWidth();
         float ww = endX-startX;
-        canvas.drawText(((IgenybevetelSzamito)graphFunctionProvider).getModeString(),startX-10,startY+getResources().getDisplayMetrics().density*16,textPaint);
+        canvas.drawText(((IgenybevetelSzamito)graphFunctionProvider).getModeString(),startX-10,startY+getResources().getDisplayMetrics().density*32,textPaint);
 
         float k =0; //x koordináta a viewban, ahol járunk
         double a;
@@ -148,13 +149,14 @@ public class GraphVIew extends View {
             max=0;
             mPainter.setColor(getResources().getColor(R.color.tagoloY));
             mPainter.setStrokeWidth(2);
-            do{
+            while(x<=s/2&&terj==-1){
                 i=k-origoX;
                 x = i*a;
+                if(x>s/2)break;
                 y=graphFunctionProvider.func(x,mPainter,mContext);
                 if(Math.abs(y)>max) max = Math.abs(y);
                 ++k;
-            }while(x<=s/2&&terj==-1);
+            }
             k=startX;
             tagolok_y*=2;
             float tagolox = (endX-startX)/tagolok_y;
@@ -176,27 +178,33 @@ public class GraphVIew extends View {
             mPainter.setColor(getResources().getColor(R.color.tagoloY));
             mPainter.setStrokeWidth(2);
             max=0;
-            do{
+            while(x<=s&&terj==-1){
                 i=k-origoX;
                 x = i*a;
+                if(x>s)break;
                 y=graphFunctionProvider.func(x,mPainter,mContext);
                 if(Math.abs(y)>max) max = Math.abs(y);
                 ++k;
-            }while(x<=s&&terj==-1);
+                //if(k%5==0) Log.v(LOGTAG,"X: "+Double.toString(x)+"; y: "+Double.toString(y)+"; MAX: "+Double.toString(max));
+            }
+            //Log.v(LOGTAG,"MAX: "+Double.toString(max));
             k=origoX;
             float tagolox = (endX-startX)/tagolok_y;
-
+           // Log.v(LOGTAG,"MAX: "+Double.toString(max));
             for(int p=1;p<=tagolok_y;++p){
 
                 canvas.drawLine(startX+p*tagolox,startY,startX+p*tagolox,endY,mPainter);
             }
+            //Log.v(LOGTAG,"MAX: "+Double.toString(max));
             mPainter.setColor(getResources().getColor(R.color.axisY));
             mPainter.setStrokeWidth(axisStrokeWidth);
             canvas.drawLine(origoX,origoY,endX,origoY,mPainter);
         }
+        Log.v(LOGTAG,"MAX: "+Double.toString(max));
         if(terj!=-1) max = terj;
+        Log.v(LOGTAG,"MAX: "+Double.toString(max));
         z= 2*Math.abs(max);
-        tagolok_x = (int) z/2;
+        tagolok_x = (int) ((z/2)*0.9999) +1;
         float tagoloy = (endY-startY)/tagolok_x/2;
         mPainter.setColor(getResources().getColor(R.color.tagoloY));
         mPainter.setStrokeWidth(2);
@@ -204,15 +212,18 @@ public class GraphVIew extends View {
             if(q==tagolok_x) q++;
             canvas.drawLine(startX,endY-q*tagoloy,endX,endY-q*tagoloy,mPainter);
         }
+
         double b = z/(endY-startY);   //egy pixel hány beosztásnak felel meg az y tengelyen
         mPainter.setColor(getResources().getColor(R.color.axisY));
         mPainter.setStrokeWidth(axisStrokeWidth);
-        Log.v(LOGTAG,Float.toString(axisStrokeWidth));
+        Log.v(LOGTAG,"AxisStrokeWidth: "+Float.toString(axisStrokeWidth));
         canvas.drawLine(origoX,startY,origoX,endY,mPainter);
+        Log.v(LOGTAG,"z= "+Double.toString(z));
         do{
             i=k-origoX;
             x = i*a;
             y=graphFunctionProvider.func(x,mPainter,mContext);
+            Log.v(LOGTAG,"x= "+Double.toString(x)+"   y= "+Double.toString(y));
             y = y/b;
 
             if(origoY-y>=startY-(getPaddingTop()*0.1) && origoY-y<=endY+(getPaddingBottom()*0.1)) {
@@ -222,20 +233,24 @@ public class GraphVIew extends View {
                     mPainter.setStrokeWidth(axisStrokeWidth);
                 }
 
-                canvas.drawLine((float) px, (float) (origoY-py),k, (float) (origoY-y),mPainter);
-                canvas.drawCircle(k, (float) (origoY-y),axisStrokeWidth/2,mPainter);
+               // canvas.drawLine((float) px, (float) (origoY-py),k, (float) (origoY-y),mPainter);
+                //canvas.drawCircle(k, (float) (origoY-y),axisStrokeWidth/2,mPainter);
                 px = k;
                 py=y;
                 mPainter.setColor(getResources().getColor(R.color.underAxisY));
-                mPainter.setAlpha(10);
+                mPainter.setAlpha(30);
                 canvas.drawLine(k,origoY,k, (float) (origoY-y),mPainter);
-                mPainter.setColor(getResources().getColor(R.color.axisY));
-                mPainter.setAlpha(255);
+               // mPainter.setColor(getResources().getColor(R.color.axisY));
+               // mPainter.setAlpha(255);
 
             }
 
             ++k;
         }while(k!=endX);
+        mPainter.setColor(getResources().getColor(R.color.axisY));
+        canvas.drawLine(startX-getPaddingLeft()/2,startY,startX+getPaddingLeft()/2,startY,mPainter);
+        canvas.drawLine(startX-getPaddingLeft()/2,endY,startX+getPaddingLeft()/2,endY,mPainter);
+        canvas.drawText(Double.toString(Math.round(max/tagolok_x)),origoX-6,origoY-tagoloy-3,textPaint);
         textPaint.setTextAlign(Paint.Align.LEFT);
         canvas.drawText(Double.toString(s),endX+3,origoY-3,textPaint);
         canvas.drawText(Double.toString(graphFunctionProvider.func(x,mPainter,mContext)),endX+3, (float) (origoY-py-3),textPaint);

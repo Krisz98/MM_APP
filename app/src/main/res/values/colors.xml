@@ -3,7 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="axisY">#009FAF</color>
-    <color name="underAxisY">#009EAE</color>
-    <color name="tagoloY">#4DD0E1</color>
+    <color name="axisY">#616161</color>
+    <color name="underAxisY">#4A148C</color>
+    <color name="tagoloY">#9E9E9E</color>
+    <color name="hatasok">#E57373</color>
+    <color name="black_overlay">#66000000</color>
 </resources>
