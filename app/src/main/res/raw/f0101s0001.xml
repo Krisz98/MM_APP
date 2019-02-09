@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FELADAT>
+    <T4>
+        <K>valami</K>
+        <V1 helyes="true">néha</V1>
+        <V2 helyes="true">többször is</V2>
+        <V3 helyes="false">akár</V3>
+        <V4 helyes="true">teljes mértékben kizárt dolog, mert nem tudom</V4>
+    </T4>
+</FELADAT>

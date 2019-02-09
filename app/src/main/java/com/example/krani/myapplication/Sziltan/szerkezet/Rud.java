@@ -8,8 +8,10 @@ import android.graphics.RectF;
 
 import com.example.krani.myapplication.R;
 import com.example.krani.myapplication.Sziltan.Hatas;
+import com.example.krani.myapplication.Sziltan.Kenyszer;
 import com.example.krani.myapplication.Sziltan.KoncentraltEropar;
 import com.example.krani.myapplication.Sziltan.KoordinataRendszer;
+import com.example.krani.myapplication.Sziltan.Megoszloero;
 
 public class Rud {
     private Canvas canvas;
@@ -67,17 +69,37 @@ public class Rud {
        canvas.drawLine(rectF.left,rectF.centerY(),rectF.right,rectF.centerY(),paint);
        canvas.drawLine(rectF.left,rectF.centerY()-(rectF.centerY()-rectF.top)/3f,rectF.left,rectF.centerY()+(rectF.centerY()-rectF.top)/3f,paint);
        canvas.drawLine(rectF.right,rectF.centerY()-(rectF.centerY()-rectF.top)/3f,rectF.right,rectF.centerY()+(rectF.centerY()-rectF.top)/3f,paint);
+       //Megoszlóerő kirajzoltatása (alulra)
+       for(Hatas hatas: koordinataRendszer.getHatasok()){
+            hatas.setContext(context);
+            if(hatas instanceof Megoszloero){
+                int max = (int) Math.min(rectF.height(),rectF.width());
+                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(), (float) (max),canvas, (int) paint.getStrokeWidth());
+            }
+
+        }
+        //Kényszerek kirajzoltatása
+        for(Hatas hatas: koordinataRendszer.getHatasok()){
+            hatas.setContext(context);
+            if(hatas instanceof Kenyszer){
+                int max = (int) Math.min(rectF.height(),rectF.width());
+                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(), (float) (max),canvas, (int) paint.getStrokeWidth());
+            }
+
+        }
+        //Egyéb hatások (Erő, nyomaték) kirajzoltatása
        for(Hatas hatas: koordinataRendszer.getHatasok()){
             hatas.setContext(context);
             if(hatas instanceof KoncentraltEropar){
                 hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(),rectF.height()*2.5f,canvas, (int) paint.getStrokeWidth());
             }
-            else {
-                int max = (int) Math.min(canvas.getHeight()-rectF.height(),canvas.getWidth()-rectF.width());
-                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(), (float) (max/2),canvas, (int) paint.getStrokeWidth());
+            else if(!(hatas instanceof Kenyszer) && !(hatas instanceof Megoszloero)) {
+                int max = (int) Math.min(rectF.height(),rectF.width());
+                hatas.draw(length/rectF.width(),rectF.left,rectF.centerY(),rectF.height(), (float) (max),canvas, (int) paint.getStrokeWidth());
             }
 
        }
+
     }
 
     public void setColor(int color) {

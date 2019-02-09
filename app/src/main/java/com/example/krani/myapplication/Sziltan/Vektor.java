@@ -12,6 +12,12 @@ public class Vektor {
        this.y = y;
        this.z = z;
     }
+    public double getLength(){
+        return Math.sqrt(x*x+y*y+z*z);
+    }
+    public boolean isnull(){
+        return getLength()==0;
+    }
 
     public void setX(double x) {
         this.x = x;

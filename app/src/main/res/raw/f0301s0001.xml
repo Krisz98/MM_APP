@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FELADAT>
+    <T1 helyes="true" nehezseg="1">
+        <F>
+            <x>1</x>
+            <Fx>-1</Fx>
+            <Fy>-1</Fy>
+        </F>
+        <B>
+            <F>
+                <x>0</x>
+                <Fx>1</Fx>
+                <Fy>1</Fy>
+            </F>
+            <T>
+                <x>0</x>
+                <Tz>1</Tz>
+            </T>
+        </B>
+    </T1>
+    <T1 helyes="false" nehezseg="1">
+        <F>
+            <x>0</x>
+            <Fx>1</Fx>
+            <Fy>1</Fy>
+        </F>
+    </T1>
+    <T1 helyes="false" nehezseg="1">
+        <D>
+            <x>0</x>
+            <x2>0.4</x2>
+            <Dy>2</Dy>
+        </D>
+    </T1>
+
+    <T1 helyes="false" nehezseg="1">
+        <F>
+            <x>0.5</x>
+            <Fx>0</Fx>
+            <Fy>-2</Fy>
+        </F>
+        <P>
+            <F>
+                <x>1</x>
+                <Fx>0</Fx>
+                <Fy>1</Fy>
+            </F>
+        </P>
+        <G>
+            <F>
+                <x>0</x>
+                <Fx>0</Fx>
+                <Fy>1</Fy>
+            </F>
+        </G>
+    </T1>
+</FELADAT>

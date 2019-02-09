@@ -1,6 +1,8 @@
 package com.example.krani.myapplication.Sziltan;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.VectorDrawable;
 import android.util.Log;
 
@@ -8,9 +10,21 @@ import com.example.krani.myapplication.R;
 
 public class KoncentraltEropar extends Hatas {
     private Vektor nyomatekVektor;
+    private Paint textPaint;
+    public KoncentraltEropar() {
+        super();
+        this.setNyomatekVektor(new Vektor(0,0,0));
+        this.textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setColor(Color.parseColor("#D50000"));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+    }
+
     public KoncentraltEropar(Vektor helyVektor, Vektor nyomatekVektor) {
         super(helyVektor);
         this.nyomatekVektor = nyomatekVektor;
+        this.textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setColor(Color.parseColor("#D50000"));
+        textPaint.setTextAlign(Paint.Align.CENTER);
     }
 
     public Vektor getNyomatekVektor() {
@@ -39,6 +53,8 @@ public class KoncentraltEropar extends Hatas {
         int h = (int) maxSize;
         int x = (int) (origoX+helyVektor.getX()/lambda);
         int y = (int) origoY;
+        textPaint.setTextSize(h/10);
+        canvas.drawText(Integer.toString((int)nyomatekVektor.getZ()),x,y-7,textPaint);
         vectorDrawable.setBounds(x-w/2,y-h/2,x+w/2,y+h/2);
         if(nyomatekVektor.getZ()<0){
             canvas.scale(1,-1,x,y);
@@ -46,7 +62,7 @@ public class KoncentraltEropar extends Hatas {
             canvas.scale(1,-1,x,y);
         }
         else vectorDrawable.draw(canvas);
-        Log.v("Nyomatek","x: "+x+" y: "+y);
+        //Log.v("Nyomatek","x: "+x+" y: "+y);
 
     }
 }

@@ -11,6 +11,9 @@ public abstract class Hatas {
     protected double drawableratio; // width/height
     protected Path path;
     protected Vektor helyVektor;
+    public Hatas(){
+        this.helyVektor=(new Vektor(0,0,0));
+    }
     protected Hatas(Vektor helyVektor){
         this.helyVektor = helyVektor;
     }

@@ -6,6 +6,9 @@ import android.graphics.Paint;
 public class Megoszloero extends Ero {
     protected Vektor endVektor;
     protected Paint mPainter;
+    public Megoszloero(){
+            init();
+    }
     public Megoszloero(Vektor startVektor, Vektor endVektor){
         super(startVektor);
         this.endVektor = endVektor;
@@ -20,6 +23,14 @@ public class Megoszloero extends Ero {
     @Override
     public void draw(float lambda, float origoX, float origoY, float visibleDiameterInPixels, float maxSize, Canvas canvas, int strokewidth) {
 
+    }
+
+    public Vektor getEndVektor() {
+        return endVektor;
+    }
+
+    public void setEndVektor(Vektor endVektor) {
+        this.endVektor = endVektor;
     }
 
     @Override

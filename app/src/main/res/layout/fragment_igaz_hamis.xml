@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IgazHamis"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/feladat_igazhamis"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:text="Feladat"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:textSize="32sp"
+        />
+
+    <ImageButton
+        android:id="@+id/TrueBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:src="@drawable/ic_play_arrow_black_24dp"
+        android:background="@drawable/t_f_button_background" />
+    <ImageButton
+        android:id="@+id/FalseBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:src="@drawable/ic_play_arrow_black_24dp"
+        android:background="@drawable/t_f_button_background"/>
+
+
+</RelativeLayout>

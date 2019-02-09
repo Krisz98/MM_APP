@@ -25,6 +25,10 @@ public class KoordinataRendszer {
         return h;
     }
 
+    public void setHatasok(ArrayList<Hatas> hatasok) {
+        this.hatasok = hatasok;
+    }
+
     public ArrayList<Hatas> getHatasok() {
         return hatasok;
     }

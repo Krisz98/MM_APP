@@ -5,14 +5,18 @@ import android.graphics.Outline;
 import android.graphics.drawable.VectorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.RelativeLayout;
 
+import com.example.krani.myapplication.Sziltan.Befogas;
+import com.example.krani.myapplication.Sziltan.Csuklostamasz;
 import com.example.krani.myapplication.Sziltan.Ero;
 import com.example.krani.myapplication.Sziltan.IgenybevetelSzamito;
 import com.example.krani.myapplication.Sziltan.KoncentraltEropar;
@@ -27,10 +31,15 @@ public class MainActivity extends AppCompatActivity{
     private GestureDetector mGestureDetector;
     private RudView rudView;
     private GraphVIew graphVIew;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         GraphVIew b = (GraphVIew) findViewById(R.id.a);
         GraphVIew c = (GraphVIew) findViewById(R.id.c);
         RudView r = (RudView) findViewById(R.id.b);
@@ -50,20 +59,31 @@ public class MainActivity extends AppCompatActivity{
         igenybevetelSzamitoC.setMode(IgenybevetelSzamito.HAJLITONYOMATEK);
         r.getRud().setKoordinataRendszer(koordinataRendszer);
         r.getRud().setLength(5);
-        koordinataRendszer.addHatas(new Ero(new Vektor(0,0,0),new Vektor(0,1,0)));
-        koordinataRendszer.addHatas(new Ero(new Vektor(2,0,0),new Vektor(0,1,0)));
-        koordinataRendszer.addHatas(new Ero(new Vektor(5,0,0),new Vektor(-1,-1,0)));
+        //koordinataRendszer.addHatas(new Ero(new Vektor(0,0,0),new Vektor(0,1,0)));
+        koordinataRendszer.addHatas(new Ero(new Vektor(5,0,0),new Vektor(0,-1,0)));
+        //koordinataRendszer.addHatas(new Ero(new Vektor(5,0,0),new Vektor(-1,-1,0)));
         //koordinataRendszer.addHatas(new Ero(new Vektor(2,0,0),new Vektor(-3,0,0)));
-        koordinataRendszer.addHatas(new KonstansMegoszlo(new Vektor(0,0,0),new Vektor(2,0,0),0.5));
-        koordinataRendszer.addHatas(new KonstansMegoszlo(new Vektor(0,0,0),new Vektor(2.5,0,0),-0.1));
-        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(0,0,0),new Vektor(0,0,5)));
-        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(3,0,0),new Vektor(0,0,1)));
-        koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(5,0,0),new Vektor(0,0,5.9)));
+        //koordinataRendszer.addHatas(new KonstansMegoszlo(new Vektor(0,0,0),new Vektor(2,0,0),0.5));
+        //koordinataRendszer.addHatas(new KonstansMegoszlo(new Vektor(0,0,0),new Vektor(2.5,0,0),-0.1));
+        //koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(0,0,0),new Vektor(0,0,5)));
+        //koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(3,0,0),new Vektor(0,0,1)));
+        //koordinataRendszer.addHatas(new KoncentraltEropar(new Vektor(5,0,0),new Vektor(0,0,5.9)));
+        //Csuklostamasz csuklostamasz = new Csuklostamasz(new Vektor(0,0,0));
+        //csuklostamasz.setEro(new Ero(csuklostamasz.getHelyVektor(),new Vektor(0,1,0)));
+        //koordinataRendszer.addHatas(csuklostamasz);
+        Befogas befogas = new Befogas(new Vektor(0,0,0));
+        befogas.setKoncentraltEropar(new Vektor(0,0,5));
+        befogas.getEro().setEroVektor(new Vektor(0,1,0));
+        koordinataRendszer.addHatas(befogas);
         r.invalidate();
         b.invalidate();
         c.invalidate();
 
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
 }

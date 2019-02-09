@@ -5,8 +5,16 @@ import android.graphics.Color;
 
 import com.example.krani.myapplication.R;
 
-public class KonstansMegoszlo extends Megoszloero {
+public final class KonstansMegoszlo extends Megoszloero {
     private double intensity;
+
+    public KonstansMegoszlo() {
+        super();
+        this.endVektor = new Vektor(0,0,0);
+        this.intensity=0;
+        this.helyVektor = new Vektor(0,0,0);
+    }
+
     public KonstansMegoszlo(Vektor startVektor, Vektor endVektor, double intensity) {
         super(startVektor, endVektor);
         this.intensity = intensity;
@@ -38,6 +46,7 @@ public class KonstansMegoszlo extends Megoszloero {
 
     @Override
     public void draw(float lambda, float origoX, float origoY, float visibleDiameterInPixels, float maxSize, Canvas canvas, int strokewidth) {
+        if(intensity==0) return;
         mPainter.setColor(context.getResources().getColor(R.color.hatasok));
         if(Math.signum(intensity)>0){
             canvas.drawRect((float)(origoX+helyVektor.getX()/lambda),origoY+6,(float)(origoX+endVektor.getX()/lambda),origoY+maxSize/2,mPainter);
@@ -45,5 +54,13 @@ public class KonstansMegoszlo extends Megoszloero {
         else{
             canvas.drawRect((float)(origoX+helyVektor.getX()/lambda),origoY-maxSize/2,(float)(origoX+endVektor.getX()/lambda),origoY-6,mPainter);
         }
+    }
+
+    public double getIntensity() {
+        return intensity;
+    }
+
+    public void setIntensity(double intensity) {
+        this.intensity = intensity;
     }
 }

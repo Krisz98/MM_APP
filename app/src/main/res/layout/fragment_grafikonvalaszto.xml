@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grafikonvalasztoRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Grafikonvalaszto">
+    <TextView
+        android:id="@+id/feladat_szoveg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Válaszd ki a helyes ábrát"
+        android:textSize="32sp"/>
+    <com.example.krani.myapplication.Sziltan.szerkezet.RudView
+        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rud"
+        android:background="@drawable/graph_background">
+
+    </com.example.krani.myapplication.Sziltan.szerkezet.RudView>
+    <com.example.krani.myapplication.GraphVIew
+        android:id="@+id/graph1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/graph_background"
+        >
+    </com.example.krani.myapplication.GraphVIew>
+    <com.example.krani.myapplication.GraphVIew
+        android:id="@+id/graph2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/graph_background"
+        >
+
+    </com.example.krani.myapplication.GraphVIew>
+    <com.example.krani.myapplication.GraphVIew
+        android:id="@+id/graph3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/graph_background"
+
+        >
+
+    </com.example.krani.myapplication.GraphVIew>
+    <com.example.krani.myapplication.GraphVIew
+        android:id="@+id/graph4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/graph_background"
+
+        >
+
+    </com.example.krani.myapplication.GraphVIew>
+
+</LinearLayout>

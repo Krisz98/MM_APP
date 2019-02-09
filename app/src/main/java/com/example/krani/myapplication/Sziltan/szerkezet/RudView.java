@@ -61,7 +61,7 @@ public class RudView extends View {
         endX = MeasureSpec.getSize(widthMeasureSpec)-getPaddingRight();
         startY = getPaddingTop();
         endY = MeasureSpec.getSize(heightMeasureSpec)-getPaddingBottom();
-        int wx = (int) ((endX-startX)*0.7);
+        int wx = (int) ((endX-startX)*0.8);
         int wy = (int) ((endY-startY)*0.4);
         int px = (endX-startX-wx)/2;
         int py =(endY-startY-wy)/2;
