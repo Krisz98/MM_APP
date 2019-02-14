@@ -15,6 +15,7 @@ public final class AdatokContract {
         public static final String COLUMN_NAME_PONTSZAM = "pontszam";
         public static final String COLUMN_NAME_IDO = "ido";
         public static final String COLUMN_NAME_DATUM = "datum";
+        public static final String COLUMN_NAME_KOD = "kod";
 
     }
     public static class EredmenyekDbHelper extends SQLiteOpenHelper{
@@ -24,7 +25,7 @@ public final class AdatokContract {
         public static final int DATABASE_VERSION = 1;
 
         private final String CREATE_TABLE_EREDMENYEK = "CREATE TABLE " + Eredmenyek.TABLE_NAME + " ("+Eredmenyek._ID + " INTEGER PRIMARY KEY," +
-                Eredmenyek.COLUMN_NAME_PONTSZAM+" REAL," +Eredmenyek.COLUMN_NAME_IDO+" REAL," + Eredmenyek.COLUMN_NAME_DATUM +" TEXT)";
+                Eredmenyek.COLUMN_NAME_PONTSZAM+" REAL," +Eredmenyek.COLUMN_NAME_IDO+" REAL,"+Eredmenyek.COLUMN_NAME_DATUM+" TEXT," + Eredmenyek.COLUMN_NAME_KOD +" TEXT)";
 
         private final String DELETE_TABLE_EREDMENYEK = "DROP TABLE IF EXISTS "+Eredmenyek.TABLE_NAME;
 

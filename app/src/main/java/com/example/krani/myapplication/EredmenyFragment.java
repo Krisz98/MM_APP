@@ -1,10 +1,14 @@
 package com.example.krani.myapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import com.example.krani.myapplication.FeladatSzervezes.Feladat;
 import com.example.krani.myapplication.FeladatSzervezes.Felelet_valasztas;
 import com.example.krani.myapplication.FeladatSzervezes.Grafikonvalasztas;
 import com.example.krani.myapplication.FeladatSzervezes.Igaz_Hamis;
+import com.example.krani.myapplication.adatok.AdatokContract;
 
 import java.util.ArrayList;
 
@@ -54,7 +59,10 @@ public class EredmenyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_eredmeny, container, false);
-        ((TextView)v.findViewById(R.id.eredmeny)).setText(Integer.toString(calculateResult()));
+        int res = calculateResult();
+        ((TextView)v.findViewById(R.id.eredmeny)).setText(Integer.toString(res));
+        AddDataToDatabase addDataToDatabase = new AddDataToDatabase(getContext(),res,calculateIdo(),"kod");
+        addDataToDatabase.execute("2019.02.10");
         return v;
     }
 
@@ -108,4 +116,44 @@ public class EredmenyFragment extends Fragment {
         }
         return points;
     }
+    private double calculateIdo(){
+        double i=0;
+        for(Feladat f : feladatok){
+            i+=f.getTime();
+        }
+        return i;
+    }
+    private class AddDataToDatabase extends AsyncTask<String,Void,Void>{
+        private Context mcontext;
+        private double pontszam;
+        private double ido;
+        private String kod;
+        public AddDataToDatabase(Context context, double pontszam, double ido, String kod) {
+            super();
+            mcontext = context;
+            this.pontszam = pontszam;
+            this.ido = ido;
+            this.kod = kod;
+        }
+
+        @Override
+        protected Void doInBackground(String... dates) {
+            AdatokContract.EredmenyekDbHelper eredmenyekDbHelper = new AdatokContract.EredmenyekDbHelper(mcontext);
+            SQLiteDatabase db = eredmenyekDbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(AdatokContract.Eredmenyek.COLUMN_NAME_PONTSZAM,pontszam);
+            values.put(AdatokContract.Eredmenyek.COLUMN_NAME_IDO,ido);
+            values.put(AdatokContract.Eredmenyek.COLUMN_NAME_DATUM,dates[0]);
+            values.put(AdatokContract.Eredmenyek.COLUMN_NAME_KOD,kod);
+            db.insert(AdatokContract.Eredmenyek.TABLE_NAME,null,values);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.v("EredmenyFragment","Beírva Adatbázisba");
+        }
+    }
+
 }

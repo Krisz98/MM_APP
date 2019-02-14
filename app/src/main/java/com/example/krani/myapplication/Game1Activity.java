@@ -2,6 +2,7 @@ package com.example.krani.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -45,14 +46,6 @@ public class Game1Activity extends AppCompatActivity implements Grafikonvalaszto
         feladatok = generator.generate_order(10,1,1,FeladatProperties.ALL_TYPES);
         feladatIterator = feladatok.iterator();
         sz = null;
-        AdatokContract.EredmenyekDbHelper eredmenyekDbHelper = new AdatokContract.EredmenyekDbHelper(this);
-        SQLiteDatabase db = eredmenyekDbHelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(AdatokContract.Eredmenyek.COLUMN_NAME_PONTSZAM,22.3);
-        contentValues.put(AdatokContract.Eredmenyek.COLUMN_NAME_DATUM,"2019.02.08");
-        contentValues.put(AdatokContract.Eredmenyek.COLUMN_NAME_IDO,32);
-        db.insert(AdatokContract.Eredmenyek.TABLE_NAME,null,contentValues);
-        
         //az 1. feladat megjelenítése:
         nextFeladat();
     }

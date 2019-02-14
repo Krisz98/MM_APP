@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    card_view:cardCornerRadius="4dp"
+    android:id="@+id/history_viewHolder"
+    android:layout_marginBottom="2dp">
+    <TextView
+        android:id="@+id/pontszam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_margin="5dp"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif"
+        android:text="PONSTZAM" />
+    <TextView
+        android:id="@+id/kod_hely"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="22sp"
+        android:layout_margin="5dp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:text="KOD" />
+    <TextView
+        android:id="@+id/datum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_margin="5dp"
+        android:textSize="16sp"
+        android:text="DATE" />
+
+</android.support.v7.widget.CardView>
