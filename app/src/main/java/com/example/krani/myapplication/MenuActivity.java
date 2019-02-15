@@ -2,6 +2,7 @@ package com.example.krani.myapplication;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.example.krani.myapplication.adatok.AdatokContract;
+
+import java.io.File;
 
 public class MenuActivity extends AppCompatActivity implements LauncherFragment.OnLauncherFragmentInteractionListener, AchievementsFragment.OnAchievementFragmentInteractionListener{
     private final String mm_url = "http://www.mm.bme.hu/";
@@ -34,6 +39,7 @@ public class MenuActivity extends AppCompatActivity implements LauncherFragment.
         fragmentTransaction.commit();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+       // SQLiteDatabase.deleteDatabase(new File(AdatokContract.EredmenyekDbHelper.DATABASE_NAME));
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override

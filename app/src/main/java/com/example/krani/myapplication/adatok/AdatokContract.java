@@ -42,6 +42,7 @@ public final class AdatokContract {
             db.execSQL(DELETE_TABLE_EREDMENYEK);
             onCreate(db);
         }
+
     }
 
 }
